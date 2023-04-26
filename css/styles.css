@@ -1,0 +1,19 @@
+/* SETUP */
+@import 'setup/typography.css';
+
+/* BASICS */
+@import 'basics/base.css';
+@import 'basics/layout.css';
+@import 'basics/helpers.css';
+
+/* COMPONENTS */
+@import 'components/header.css';
+@import 'components/search-tab.css';
+@import 'components/gallery.css';
+@import 'components/control-box.css';
+@import 'components/modal.css';
+@import 'components/about.css';
+@import 'components/footer.css';
+
+/* MEDIA QUERIS */
+@import 'setup/mq.css';

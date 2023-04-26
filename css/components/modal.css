@@ -1,0 +1,46 @@
+.modal {
+  position: fixed;
+  top: 55%;
+  left: 63%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.modal button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+}
+
+.facebook-share {
+  background-color: #3b5998;
+}
+
+.whatsapp-share {
+  background-color: #25d366;
+}
+
+.modal .close-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* transform: translate(50%, -50%); */
+  background-color: #fff;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0;
+  /* border-radius: 50%; */
+  cursor: pointer;
+}

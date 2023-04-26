@@ -1,0 +1,17 @@
+.about {
+  background-color: #f0f0f0;
+  padding: 1em;
+}
+
+.profile-img {
+  border-radius: 50%;
+  height: 120px;
+  background-color: rgb(98, 98, 98);
+}
+.about a {
+  color: rgb(98, 98, 98);
+}
+.about-description {
+  position: absolute;
+  color: rgb(98, 98, 98);
+}

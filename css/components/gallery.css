@@ -1,0 +1,21 @@
+.gallery {
+  display: grid;
+  gap: 10px;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  padding-bottom: 10px;
+  border-bottom: #ffffff 5px solid;
+}
+
+.gallery img {
+  max-height: 232px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.3);
+  -webkit-box-shadow: 0px 0px 14px 6px rgba(0, 0, 0, 0.89);
+  box-shadow: 0px 0px 14px 6px rgba(0, 0, 0, 0.89);
+}

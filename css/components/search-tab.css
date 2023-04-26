@@ -1,0 +1,35 @@
+.search {
+  padding: 10px;
+}
+
+#mysearch {
+  outline: none;
+  border-radius: 1em;
+  padding: 0.4em;
+}
+
+.upload {
+  cursor: pointer;
+}
+
+.search-content :last-child {
+  /* padding: 10px; */
+  padding-inline-start: 5px;
+  font-size: 1.35em;
+}
+
+.key-words {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  align-items: center;
+}
+
+.key-words > *,
+.more-words > * {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.key-words > *:hover {
+  text-shadow: rgb(253, 211, 21) 1px 0 10px;
+}

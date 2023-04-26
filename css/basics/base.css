@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color: #626262;
+  font-family: Atma-medium, Arial, Helvetica, sans-serif;
+  line-height: 1.25;
+}
+
+body {
+  margin: 0;
+  background: #f0f0f0;
+}
+
+a {
+  text-decoration: none;
+  color: aliceblue;
+  padding: 1.55em;
+  font-size: larger;
+}
+
+aside {
+  display: none;
+}
+
+header a:hover {
+  box-shadow: inset 0px -4px 3px 0px rgb(41 85 48);
+}

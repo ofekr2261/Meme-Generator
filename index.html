@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEME Generator</title>
+    <link rel="icon" href="img/LOGO-2.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/2821e15a06.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body onload="onInit()">
+    <div class="screen" onclick="toggleMenu()"></div>
+    <header class="main-header">
+        <div class="header-content main-layout flex ">
+            <div class="logo flex  align-center" onclick="refreshPage()">Meme Generator</div>
+            <ul class="main-nav   flex  align-center  clean-list">
+                <li><a href="" onclick="showGallery()">Gallery</a></li>
+                <li><a href="" onclick="onShowSavedMemes();return false;" ontouchend="toggleMenu()">Memes</a></li>
+                <li><a href="#footer" onclick="closeMenu()" ontouchend="toggleMenu()">About</a></li>
+            </ul>
+            <button class="btn-menu-toggle not-display" onclick="toggleMenu()">☰</button>
+        </div>
+    </header>
+    <main class="main main-layout">
+        <div class="editor not-display">
+            <div class="canvas-container">
+                <canvas id="canvas" width="450" height="450"></canvas>
+            </div>
+
+            <div class="control-box">
+                <input type="text" onkeypress="onWriteText(this)" onkeyup="onWriteText(this)" class="input-text "
+                    data-trans="text-placeholder" placeholder="Your Text Here: " />
+                <button onclick="onAddLine()"><i class="fas fa-plus-circle"></i></button>
+                <button onclick="onMoveUp()"><i class="fas fa-arrow-alt-circle-up"></i></button>
+                <button onclick="onMoveDown()"><i class="fas fa-arrow-alt-circle-down"></i></button>
+                <button onclick="onDeleteLine()"><i class="fas fa-trash"></i></button>
+                <button onclick="onAlignLeft()" class="align"><i class="fas fa-align-left"></i></button>
+                <button onclick="onAlignCenter()" class="align"><i class="fas fa-align-center"></i></button>
+                <button onclick="onAlignRight()" class="align"><i class="fas fa-align-right"></i></button>
+                <button onclick="onChangeSize('10')" class="size"><i class="far fa-plus-square"></i></button>
+                <button onclick="onChangeSize('-10')" class="size"><i class="far fa-minus-square"></i></button>
+                <select class="fonts" onclick="onChangeFont(this.value)">
+                    <option style="font-family: Atma-medium" value="Atma-medium">Hello There!</option>
+                    <option style="font-family: Eurofurenceregular" value="Eurofurenceregular">Hello There!</option>
+                    <option style="font-family: JosefinSans" value="JosefinSans">Hello There!</option>
+                    <option style="font-family: script" value="script">Hello There!</option>
+                </select>
+                <button onclick="onColorClicked()" class="color-btn"><i class="fas fa-palette"></i></button>
+                <button class="color-fill not-display"> <input type="color"
+                        onchange="onChangeColor(this.value)" /></button>
+                <button onclick="onBorderClicked()" class="border-btn"><i class="fas fa-paint-brush"></i></button>
+                <button class="border-fill not-display"> <input type="color"
+                        onchange="onChangeBorder(this.value)" /></button>
+                <button class="download-btn">
+                    <a href="#" onclick="onDownload(this)" download="myphoto"> <i class="fas fa-file-download"></i></a>
+                </button>
+                <button class="share-btn" onclick="openModal()">
+                    <a href="#" ><i class="fa-solid fa-share-nodes"></i></a>
+                </button>
+                <button class="save-btn" onclick="onSave()">
+                    <a href="#"><i class="far fa-save"></i></i></a>
+                </button>
+                <div class="stickers-container" >
+                    <button class="arrow left"></button>
+                    <div class="stickers flex">
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">🎯</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">😜</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">😍</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">😤</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">🎨</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">🎶</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">🎪</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">🏈</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">🎷</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">😥</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">😎</label>
+                        <label onclick="onCreateSticker(this.innerText)" class="sticker">🤡</label>
+                    </div>
+                    <button class="arrow right"></button>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    
+    <div class="main-gallery main-layout">
+        <div class="search flex space-between align-center">
+            <div class="search-content flex">
+                <input type="search" onchange="onSearchImgs(this.value)" list="search" id="mysearch" autocomplete="off"
+                    name="search" placeholder="Search" />
+                <datalist id="search"></datalist>
+                <div class="upload">
+                    <label for="file"><i class="upload far fa-images"></i></label>
+                    <input type="file" id="file" class="file-input btn not-display" name="image"
+                        onchange="onImgInput(event)" />
+
+                </div>
+            </div>
+            <div class="key-words">
+            </div>
+        </div>
+        <div class="gallery"></div>
+    </div>
+
+    
+    <section class="about main-layout">
+        <div class="about-content">
+            <img class="profile-img" src="img/profile-pic.jpg" alt="">
+            <h3>Ofek Rashti</h3>
+            <p>FullStack Developer</p>
+            <a href="https://www.facebook.com/profile.php?id=100000608010874">
+                <i class="fa fa-facebook"></i>
+                <a href="https://github.com/ofekr2261">
+                    <i class="fa-brands fa-github"></i>
+                    <div class=" ">
+                        <p class="about-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda, praesentium.</p>
+                    </div>
+
+                    </a>
+            </a>
+        </div>
+    </section>
+
+<aside class="modal flex">
+    <button class="close-modal" onclick="closeModal()">x</button>
+    <button class="facebook-share" onclick="onUploadImg('facebook')">Share <i class="fa-brands fa-facebook"></i></button>
+    <button class="whatsapp-share" onclick="onUploadImg('whatsapp')">Share <i class="fa-brands fa-whatsapp"></i></button>
+</aside>
+    <footer class="main-footer main-layout" id="footer">
+        <div class="footer-logo  main-layout">Meme-Genereator</div>
+        <small class="footer-copyright  main-layout">© 2023 Meme-Genereator - All Rights Reserved - Ofek Rashti </small>
+        
+    </footer>
+    <script src="js/services/util-service.js"></script>
+    <script src="js/services/upload-service.js"></script>
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/services/gallery-service.js"></script>
+    <script src="js/canvas-controller.js"></script>
+    <script src="js/gallery-controller.js"></script>
+
+</body>
+
+</html>

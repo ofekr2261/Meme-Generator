@@ -1,0 +1,24 @@
+footer {
+  border-top: #ffffff 5px solid;
+}
+
+.main-footer {
+  padding-top: 2.625rem;
+  padding-bottom: 1.75rem;
+  background-color: #f0f0f0;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-footer .footer-logo {
+  color: #292929;
+  font-size: 2.5rem;
+  font-family: Cross, Arial, Helvetica, sans-serif;
+  /* padding-bottom: 2.5rem; */
+}
+
+.footer-copyright {
+  color: #a6a6a6;
+  /* padding-bottom: 2.187rem; */
+}
