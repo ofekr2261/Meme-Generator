@@ -46,6 +46,7 @@ function startDrag(ev) {
   setCurrLineIdx(clickedLine.id)
   markLine()
   gDrag = true
+  gCanvas.style.cursor = 'move'
 }
 
 function onDrag(ev) {
@@ -80,6 +81,7 @@ function finishDrag(ev) {
   drawImg()
   markLine()
   gDrag = false
+  gCanvas.style.cursor = ''
 }
 
 function drawImg() {
