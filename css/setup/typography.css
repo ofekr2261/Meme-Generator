@@ -1,19 +1,19 @@
 @font-face {
   font-family: Atma-medium;
-  src: url(../fonts/Atma/Atma-Medium.ttf);
+  src: url(../../fonts/Atma/Atma-Medium.ttf);
 }
 
 @font-face {
   font-family: script;
-  src: url(../fonts/Style_Script/StyleScript-Regular.ttf);
+  src: url(../../fonts/Style_Script/StyleScript-Regular.ttf);
 }
 
 @font-face {
   font-family: JosefinSans;
-  src: url(../fonts/JosefinSans/JosefinSans-LightItalic.ttf);
+  src: url(../../fonts/JosefinSans/JosefinSans-LightItalic.ttf);
 }
 
 @font-face {
   font-family: Cross;
-  src: url(../fonts/cross/Crosshatcher1.ttf);
+  src: url(../../fonts/cross/Crosshatcher1.ttf);
 }
