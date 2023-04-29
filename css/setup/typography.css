@@ -17,3 +17,33 @@
   font-family: Cross;
   src: url(../../fonts/cross/Crosshatcher1.ttf);
 }
+
+@font-face {
+  font-family: Rosewood;
+  src: url(../../fonts/Rosewood/RosewoodStd-Regular.otf);
+}
+
+@font-face {
+  font-family: Sigmar;
+  src: url(../../fonts/Sigmar/Sigmar-Regular.ttf);
+}
+
+@font-face {
+  font-family: Permanent_Marker;
+  src: url(../../fonts/Permanent_Marker/PermanentMarker-Regular.ttf);
+}
+
+@font-face {
+  font-family: Creepster;
+  src: url(../../fonts/Creepster/Creepster-Regular.ttf);
+}
+
+@font-face {
+  font-family: Monoton;
+  src: url(../../fonts/Monoton/Monoton-Regular.ttf);
+}
+
+@font-face {
+  font-family: Rye;
+  src: url(../../fonts/Rye/Rye-Regular.ttf);
+}
