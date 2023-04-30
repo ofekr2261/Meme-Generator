@@ -1,7 +1,7 @@
 'use strict'
 
-var gMeme
-var gLineId = 0
+let gMeme
+let gLineId = 0
 
 function createMeme(id) {
   gLineId = 0
@@ -23,7 +23,7 @@ function setNewLine(value, type) {
 function addLine(txt) {
   gLineId++
   gMeme.selectedLineIdx = gMeme.lines.length
-  var startY
+  let startY
   if (gMeme.lines.length === 0) startY = 80
   else if (gMeme.lines.length === 1) startY = 420
   else if (gMeme.lines.length > 1) startY = 175
@@ -87,7 +87,7 @@ function findLineIdx(lineId) {
 }
 
 function setCurrLineIdx(lineId) {
-  var lineIdx = findLineIdx(lineId)
+  let lineIdx = findLineIdx(lineId)
   if (lineIdx === -1) return
   gMeme.selectedLineIdx = lineIdx
   document.querySelector('.input-text').value =

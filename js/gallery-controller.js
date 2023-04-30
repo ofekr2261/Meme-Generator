@@ -49,12 +49,12 @@ function onShowSavedMemes() {
   document.querySelector('.editor').classList.add('not-display')
   closeMenu()
 
-  var memes = loadFromStorage(KEY_MEMES)
+  let memes = loadFromStorage(KEY_MEMES)
   if (!memes) {
     document.querySelector('.gallery').innerHTML = '<h1>No MEMES Yet </h1>'
     return
   }
-  var imgs = getSavedMemes(memes)
+  let imgs = getSavedMemes(memes)
   document.querySelector('.gallery').innerHTML = imgs
 }
 
@@ -65,29 +65,29 @@ function onSearchImgs(keyword) {
   }
   setCommonKeyWords(keyword)
   showKeyWords()
-  var filteredImgs = getSearchImgs(keyword)
-  var imgs = getImgsForDisplay(filteredImgs)
+  let filteredImgs = getSearchImgs(keyword)
+  let imgs = getImgsForDisplay(filteredImgs)
   document.querySelector('.gallery').innerHTML = imgs.join('')
 }
 
 function setSearchOptions() {
-  var keywords = getSearchKeyWords()
+  let keywords = getSearchKeyWords()
   document.getElementById('search').innerHTML = keywords.join('')
 }
 
 function showKeyWords() {
-  var numOfWords = 5
-  var keywords = getKeyWords()
+  let numOfWords = 5
+  let keywords = getKeyWords()
   keywords = keywords.splice(0, numOfWords)
-  var htmls =
+  let htmls =
     keywords.join('') + `<label onclick="showAllkeyWords()">more..</label>`
   document.querySelector('.key-words').innerHTML = htmls
 }
 
 function showAllkeyWords() {
-  var keywords = getKeyWords()
-  var elWords = document.querySelector('.key-words')
-  var elClose = `<label onclick="showKeyWords()"><i class="fas fa-arrows-alt-v"></i></label>`
+  let keywords = getKeyWords()
+  let elWords = document.querySelector('.key-words')
+  let elClose = `<label onclick="showKeyWords()"><i class="fas fa-arrows-alt-v"></i></label>`
   elWords.innerHTML = keywords.join('') + elClose
   elWords.classList.remove('not-display')
 }

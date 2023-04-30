@@ -9,7 +9,7 @@ const gKeywordsMap = {
   funny: 30,
 }
 
-var gImgs = [
+let gImgs = [
   { id: 0, url: 'img/meme-imgs/0.jpg', keywords: ['All'] },
   { id: 1, url: 'img/meme-imgs/1.jpg', keywords: ['politics', 'All'] },
   { id: 2, url: 'img/meme-imgs/2.jpg', keywords: ['animals', 'love', 'All'] },
@@ -67,7 +67,7 @@ function getKeyWordsFrequency(keyword) {
 }
 
 function getSavedMemes(memes) {
-  var strHtmls = memes.map((meme) => {
+  let strHtmls = memes.map((meme) => {
     return `<img src=${meme}>`
   })
   return strHtmls.join('')
@@ -95,7 +95,7 @@ function getSearchKeyWords() {
 
 function getKeyWords() {
   return gKeywords.map((keyword) => {
-    var size = gKeywordsMap[keyword] ? gKeywordsMap[keyword] : 16
+    let size = gKeywordsMap[keyword] ? gKeywordsMap[keyword] : 16
     return `<label onclick="onSearchImgs('${keyword}')"
          style="font-size:${size}px">${keyword}</label>`
   })
@@ -115,7 +115,7 @@ function getImgsForDisplay(images) {
 }
 
 function addImg(url, keyword = 'none') {
-  var image = { id: 99, url, keyword }
+  let image = { id: 99, url, keyword }
   gImgs.push(image)
 }
 

@@ -1,10 +1,13 @@
 'use strict'
-var gSavedMemes = []
-var KEY_MEMES = 'memes'
-var gCanvas
-var gCtx
-var gDrag = false
-var gStartPos
+let gSavedMemes = []
+let KEY_MEMES = 'memes'
+let gCanvas
+let gCtx
+let gDrag = false
+let gStartPos
+let animationFrameId
+let startX, startY
+let prevX, prevY
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function initCanvas() {
@@ -47,20 +50,33 @@ function startDrag(ev) {
   markLine()
   gDrag = true
   gCanvas.style.cursor = 'move'
+  startX = ev.clientX
+  startY = ev.clientY
+  prevX = startX
+  prevY = startY
+  animationFrameId = requestAnimationFrame(onDrag)
 }
 
 function onDrag(ev) {
   if (!gDrag) return
-  const pos = getEvPos(ev)
-  var currLine = getCurrentLine()
-  currLine['y'] = pos.y
-  currLine['x'] = pos.x
-  drawImg()
+  const currX = ev.clientX
+  const currY = ev.clientY
+  const dx = currX - prevX
+  const dy = currY - prevY
+  const posDiff = Math.sqrt(dx * dx + dy * dy)
+  if (posDiff) {
+    const currLine = getCurrentLine()
+    currLine.x += dx
+    currLine.y += dy
+    prevX = currX
+    prevY = currY
+    drawImg()
+  }
+  animationFrameId = requestAnimationFrame(onDrag)
 }
 
-// That function get the event position
 function getEvPos(ev) {
-  var pos = {
+  let pos = {
     x: ev.offsetX,
     y: ev.offsetY,
   }
@@ -76,8 +92,8 @@ function getEvPos(ev) {
 }
 
 function finishDrag(ev) {
-  // setPosition(offsetX, offsetY);
   if (!gDrag) return
+  cancelAnimationFrame(animationFrameId)
   drawImg()
   markLine()
   gDrag = false
@@ -85,7 +101,7 @@ function finishDrag(ev) {
 }
 
 function drawImg() {
-  var img = new Image()
+  let img = new Image()
   let meme = getMeme()
   let memeId = meme.selectedImgId
   let memeImg = getImgById(memeId)
@@ -107,9 +123,9 @@ function onAddLine() {
 
 function onSave() {
   const currMeme = gCanvas.toDataURL('image/jpeg')
-  var memes = loadFromStorage(KEY_MEMES)
+  let memes = loadFromStorage(KEY_MEMES)
   if (!memes || memes === null) {
-    var memes = [currMeme]
+    let memes = [currMeme]
     saveToStorage(KEY_MEMES, memes)
     return
   }
@@ -162,12 +178,12 @@ function onDownload(elLink) {
 }
 
 function openModal() {
-  var aside = document.querySelector('aside.modal')
+  let aside = document.querySelector('aside.modal')
   aside.style.display = 'block'
 }
 
 function closeModal() {
-  var aside = document.querySelector('aside.modal')
+  let aside = document.querySelector('aside.modal')
   aside.style.display = 'none'
 }
 
@@ -178,39 +194,39 @@ function onUpload(platform) {
 
 function onChangeSize(value) {
   let currLineIdx = getMeme().selectedLineIdx
-  var diff = +value + getMeme().lines[currLineIdx]['size']
+  let diff = +value + getMeme().lines[currLineIdx]['size']
   setNewLine(diff, 'size')
   drawImg()
 }
 
 function onMoveUp() {
-  var currLine = getCurrentLine()
+  let currLine = getCurrentLine()
   currLine['y'] -= 5
   drawImg()
 }
 
 function onMoveDown() {
-  var currLine = getCurrentLine()
+  let currLine = getCurrentLine()
   currLine['y'] += 5
   drawImg()
 }
 
 function onAlignCenter() {
-  var currLine = getCurrentLine()
-  var txtSize = gCtx.measureText(currLine.txt).width
+  let currLine = getCurrentLine()
+  let txtSize = gCtx.measureText(currLine.txt).width
   currLine['x'] = gCanvas.width / 2 - txtSize / 2
   drawImg()
 }
 
 function onAlignLeft() {
-  var currLine = getCurrentLine()
+  let currLine = getCurrentLine()
   currLine['x'] = 0
   drawImg()
 }
 
 function onAlignRight() {
-  var currLine = getCurrentLine()
-  var txtSize = gCtx.measureText(currLine.txt).width
+  let currLine = getCurrentLine()
+  let txtSize = gCtx.measureText(currLine.txt).width
   currLine['x'] = gCanvas.width - txtSize
   drawImg()
 }
@@ -246,6 +262,8 @@ function drawText() {
     let myColorLine = line.borderColor
     let yPos = line.y
     let xPos = line.x
+    let width = line.width
+    let height = line.height
     let font = line.font
 
     gCtx.lineWidth = 1
@@ -260,10 +278,10 @@ function drawText() {
 }
 
 function loadImageFromInput(ev, onImageReady) {
-  var reader = new FileReader()
+  let reader = new FileReader()
 
   reader.onload = function (event) {
-    var img = new Image()
+    let img = new Image()
     img.onload = onImageReady.bind(null, img)
     img.src = event.target.result
   }
